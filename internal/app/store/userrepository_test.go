@@ -7,11 +7,11 @@ import (
 	"testing"
 )
 
-func TestUserRepository_CreateUser(t *testing.T) {
+func TestUserRepository_Create(t *testing.T) {
 	s, teardown := store.TestStore(t, databaseURL)
 	defer teardown("users")
 
-	u, err := s.User().CreateUser(&model.User{
+	u, err := s.User().Create(&model.User{
 		Email: "user@example.com",
 	})
 
@@ -27,7 +27,7 @@ func TestUserRepository_FindByEmail(t *testing.T) {
 	_, err := s.User().FindByEmail(email)
 	assert.Error(t, err)
 
-	s.User().CreateUser(&model.User{
+	s.User().Create(&model.User{
 		Email: "user@example.com",
 	})
 

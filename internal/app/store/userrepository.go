@@ -8,7 +8,7 @@ type UserRepository struct {
 	store *Store
 }
 
-func (r *UserRepository) CreateUser(u *model.User) (*model.User, error) {
+func (r *UserRepository) Create(u *model.User) (*model.User, error) {
 	if err := r.store.db.QueryRow(
 		"INSERT INTO users (email, encrypted_password) VALUES ($1, $2) RETURNING id",
 		u.Email,
